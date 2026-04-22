@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/22 13:53:59 by alejandj          #+#    #+#             */
+/*   Updated: 2026/04/22 14:58:01 by alejandj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 /*
@@ -21,7 +33,7 @@ static void	init_cub(t_cub *cub)
 /*
 ** Placeholder for where raycasting logic begins.
 */
-/*
+
 static void	run_game(t_cub *cub)
 {
 	// 1. Initialize mlx: cub->mlx = mlx_init();
@@ -30,11 +42,17 @@ static void	run_game(t_cub *cub)
 	// 4. Set up mlx_hook for keys (WASD, arrows, ESC).
 	// 5. Start the render loop: mlx_loop_hook(...);
 	// 6. mlx_loop(cub->mlx);
+
+	if (create_window(cub))
+	{
+		ft_printf("Error: can't create window\n");
+		return ;
+	}
 	
-	(void)cub; // Suppress unused variable warning for now
-	printf("Map and config loaded successfully! Starting game...\n");
+	ft_printf("Map and config loaded successfully! Starting game...\n");
+	mlx_loop(cub->mlx);
 }
-*/
+
 
 int	main(int argc, char **argv)
 {
@@ -58,7 +76,7 @@ int	main(int argc, char **argv)
 	close(fd);
     pad_map(&cub);
 	validate_cub_map(&cub);
-	// run_game(&cub);
+	run_game(&cub);
     print_cub_debug(&cub);
     free_cub(&cub);
 	return (0);
