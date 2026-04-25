@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:53:10 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/24 13:48:07 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/25 21:42:02 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,32 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-}	t_player;
+}			t_player;
+
+// Ray info
+typedef struct s_ray
+{
+	double	camera_x;		// Indica "angulo" del rayo (-1 a 1)
+	double	ray_dir_x;		// Direccion del rayo
+	double	ray_dir_y;		// Direccion del rayo
+	
+	int	map_x;				// Posicion X del rayo en el mapa
+	int	map_y;				// Posicion X del rayo en el mapa
+	
+	double	delta_dist_x;	// Distancia que recorre el rayo en 1px (eje X)
+	double	delta_dist_y;	// Distancia que recorre el rayo en 1px (eje Y)
+	
+	double	side_dist_x;	// Distancia desde el pj hasta el siguiente valor del mapa (eje X)
+	double	side_dist_y;	// Distancia desde el pj hasta el siguiente valor del mapa (eje X)
+
+	int		step_x;			// Hacia donde va el rayo (Izq: -1, Der: 1, Arriba: -1, Abajo: 1)
+	int		step_y;
+	
+	int		hit;			// Ha chocado?
+	int		side;			// Ha chocado con cara X o cara Y
+
+	double	real_dist;		// Distancia real
+}				t_ray;
 
 typedef struct s_cub
 {
@@ -53,7 +78,7 @@ typedef struct s_cub
 	t_player	player;
 	void		*mlx;
 	void		*win;
-}	t_cub;
+}				t_cub;
 
 // debug.c (Must erase at end)
 void	print_cub_debug(t_cub *cub);
