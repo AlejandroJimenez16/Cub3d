@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:53:10 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/25 21:42:02 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/26 21:04:26 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define WIDTH 800
 # define HEIGHT 600
@@ -43,24 +44,21 @@ typedef struct s_player
 // Ray info
 typedef struct s_ray
 {
-	double	camera_x;		// Indica "angulo" del rayo (-1 a 1)
-	double	ray_dir_x;		// Direccion del rayo
-	double	ray_dir_y;		// Direccion del rayo
+	double	camera_x;		// Escala que determina la inclinacion de cada rayo (Izq: -1, Centro: 0, Derecha: 1)
+	double	ray_dir_x;		// Direccion del rayo (eje X)
+	double	ray_dir_y;		// Direccion del rayo (eje Y)
 	
 	int	map_x;				// Posicion X del rayo en el mapa
 	int	map_y;				// Posicion X del rayo en el mapa
 	
-	double	delta_dist_x;	// Distancia que recorre el rayo en 1px (eje X)
-	double	delta_dist_y;	// Distancia que recorre el rayo en 1px (eje Y)
+	double	delta_dist_x;	// Distancia que recorre el rayo para avanzar 1 unidad (eje X)
+	double	delta_dist_y;	// Distancia que recorre el rayo para avanzar 1 unidad (eje Y)
 	
-	double	side_dist_x;	// Distancia desde el pj hasta el siguiente valor del mapa (eje X)
-	double	side_dist_y;	// Distancia desde el pj hasta el siguiente valor del mapa (eje X)
+	double	side_dist_x;	// Distancia que hay desde pj hasta donde esta ahora mismo el rayo (eje X)
+	double	side_dist_y;	// Distancia que hay desde pj hasta donde esta ahora mismo el rayo (eje X)
 
 	int		step_x;			// Hacia donde va el rayo (Izq: -1, Der: 1, Arriba: -1, Abajo: 1)
 	int		step_y;
-	
-	int		hit;			// Ha chocado?
-	int		side;			// Ha chocado con cara X o cara Y
 
 	double	real_dist;		// Distancia real
 }				t_ray;
