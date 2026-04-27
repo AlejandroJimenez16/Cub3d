@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:53:10 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/26 21:04:26 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/27 14:44:54 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ typedef struct s_ray
 	double	delta_dist_y;	// Distancia que recorre el rayo para avanzar 1 unidad (eje Y)
 	
 	double	side_dist_x;	// Distancia que hay desde pj hasta donde esta ahora mismo el rayo (eje X)
-	double	side_dist_y;	// Distancia que hay desde pj hasta donde esta ahora mismo el rayo (eje X)
+	double	side_dist_y;	// Distancia que hay desde pj hasta donde esta ahora mismo el rayo (eje Y)
 
 	int		step_x;			// Hacia donde va el rayo (Izq: -1, Der: 1, Arriba: -1, Abajo: 1)
 	int		step_y;
+
+	int		side;			// Indica con que cara de la pared se ha chocado (cara: norte/sur, cara: este/oeste)
 
 	double	real_dist;		// Distancia real
 }				t_ray;
@@ -101,6 +103,9 @@ int		close_window(t_cub *cub);
 
 // events.c
 int		handle_key(int keycode, void *param);
+
+// raycast.c
+void	raycast_loop(t_cub *cub);
 
 // cub3d_utils.c
 void	free_cub(t_cub *cub);
