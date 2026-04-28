@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:53:59 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/27 14:28:31 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/28 12:21:18 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	run_game(t_cub *cub)
 	ft_printf("Map and config loaded successfully! Starting game...\n");
 	mlx_key_hook(cub->win, handle_key, cub);
 	mlx_hook(cub->win, 17, 0, close_window, cub);
+	draw_2d_map(cub);
 	raycast_loop(cub);
 	mlx_loop(cub->mlx);
 }

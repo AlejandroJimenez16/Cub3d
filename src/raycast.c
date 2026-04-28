@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 20:50:36 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/27 14:24:40 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/28 17:48:51 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ void	raycast_loop(t_cub *cub)
 			ray.real_dist = ray.side_dist_x - ray.delta_dist_x;
 		else
 			ray.real_dist = ray.side_dist_y - ray.delta_dist_y;
+
+		ray.hit_x = cub->player.x + (ray.ray_dir_x * ray.real_dist);
+		ray.hit_y = cub->player.y + (ray.ray_dir_y * ray.real_dist);
+
+		draw_ray(cub, &ray, 0xFF0000);
 
 		// 4. CALCULAR ALTURA DE LÍNEA Y DIBUJAR
 		// -> Aquí decides qué tan grande se ve el muro en el píxel 'i'.

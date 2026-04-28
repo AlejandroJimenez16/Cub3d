@@ -14,7 +14,9 @@ SRCS		= src/main.c				\
 			  src/cub3d_utils.c			\
 			  src/debug.c				\
 			  src/window.c				\
-			  src/events.c
+			  src/events.c				\
+			  src/raycast.c				\
+			  src/render.c				
 
 OBJS		= $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:53:10 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/27 14:44:54 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/28 17:50:39 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define WIDTH 800
 # define HEIGHT 600
+# define TILE_SIZE 16
 
 typedef struct s_map
 {
@@ -63,7 +64,26 @@ typedef struct s_ray
 	int		side;			// Indica con que cara de la pared se ha chocado (cara: norte/sur, cara: este/oeste)
 
 	double	real_dist;		// Distancia real
-}				t_ray;
+
+	double	hit_x;			// Punto donde choca con la pared
+	double	hit_y;
+}			t_ray;
+
+// Elements to draw ray
+typedef struct s_line
+{
+	double	x1;
+	double	y1;
+	double	x2;
+	double	y2;
+	double	dx;
+	double	dy;
+	double	steps;
+	double	current_x;
+	double	current_y;
+	double	move_x;
+	double	move_y;
+}			t_line;
 
 typedef struct s_cub
 {
@@ -106,6 +126,10 @@ int		handle_key(int keycode, void *param);
 
 // raycast.c
 void	raycast_loop(t_cub *cub);
+
+// render.c
+void	draw_ray(t_cub *cub, t_ray *ray, int color);
+void	draw_2d_map(t_cub *cub);
 
 // cub3d_utils.c
 void	free_cub(t_cub *cub);
