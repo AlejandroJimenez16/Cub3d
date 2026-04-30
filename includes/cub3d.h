@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:53:10 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/28 17:50:39 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/30 14:14:55 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define TILE_SIZE 16
+# define MOVE_SPEED 0.05
+
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+
 
 typedef struct s_map
 {
@@ -85,6 +92,14 @@ typedef struct s_line
 	double	move_y;
 }			t_line;
 
+typedef struct s_keys
+{
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+}			t_keys;
+
 typedef struct s_cub
 {
 	char		*no_path;
@@ -98,6 +113,7 @@ typedef struct s_cub
 	t_player	player;
 	void		*mlx;
 	void		*win;
+	t_keys		keys;
 }				t_cub;
 
 // debug.c (Must erase at end)
@@ -122,7 +138,9 @@ int		create_window(t_cub *cub);
 int		close_window(t_cub *cub);
 
 // events.c
-int		handle_key(int keycode, void *param);
+int		handle_key_press(int keycode, void *param);
+int		handle_key_release(int keycode, void *param);
+int		handle_move(void *param);
 
 // raycast.c
 void	raycast_loop(t_cub *cub);

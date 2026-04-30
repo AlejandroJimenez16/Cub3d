@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 12:12:12 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/28 17:54:24 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/29 13:54:19 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,9 @@ void	draw_2d_map(t_cub *cub)
 				draw_square(cub, x * TILE_SIZE, y * TILE_SIZE, 0x0000FF);
 			else if (cub->map.grid[y][x] == '0')
 				draw_square(cub, x * TILE_SIZE, y * TILE_SIZE, 0x000000);
-			else if (cub->map.grid[y][x] == 'N' || cub->map.grid[y][x] == 'S'
-					|| cub->map.grid[y][x] == 'E' || cub->map.grid[y][x] == 'W')
-				draw_square(cub, x * TILE_SIZE, y * TILE_SIZE, 0xFFFF00);
 			x++;
 		}
 		y++;
 	}
+	draw_square(cub, (cub->player.x * TILE_SIZE) - TILE_SIZE / 2, (cub->player.y * TILE_SIZE) - TILE_SIZE / 2, 0xFFFF00);
 }

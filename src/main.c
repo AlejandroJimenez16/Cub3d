@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:53:59 by alejandj          #+#    #+#             */
-/*   Updated: 2026/04/28 12:21:18 by alejandj         ###   ########.fr       */
+/*   Updated: 2026/04/30 13:44:12 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,24 @@ static void	run_game(t_cub *cub)
 	// 4. Set up mlx_hook for keys (WASD, arrows, ESC).
 	// 5. Start the render loop: mlx_loop_hook(...);
 	// 6. mlx_loop(cub->mlx);
-
+	
 	if (create_window(cub))
 	{
 		ft_printf("Error: can't create window\n");
 		return ;
 	}
-	
+
 	ft_printf("Map and config loaded successfully! Starting game...\n");
-	mlx_key_hook(cub->win, handle_key, cub);
-	mlx_hook(cub->win, 17, 0, close_window, cub);
 	draw_2d_map(cub);
 	raycast_loop(cub);
+	
+	// Events
+	mlx_hook(cub->win, 2, 1L << 0, handle_key_press, cub);
+	mlx_hook(cub->win, 3, 1L << 1, handle_key_release, cub);
+	mlx_hook(cub->win, 17, 0, close_window, cub);
+	
+	mlx_loop_hook(cub->mlx, handle_move, cub);
+	
 	mlx_loop(cub->mlx);
 }
 
