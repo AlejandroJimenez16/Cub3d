@@ -56,10 +56,7 @@ void	free_cub(t_cub *cub)
 		free(cub->map.grid);
 	}
 	if (cub->mlx)
-	{
 		destroy_img(cub);
-		mlx_mouse_show(cub->mlx, cub->win);
-	}
 }
 
 /*

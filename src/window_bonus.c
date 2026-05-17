@@ -25,6 +25,7 @@ int	create_window(t_cub *cub)
 
 int	close_window(t_cub *cub)
 {
+	mlx_mouse_show(cub->mlx, cub->win);
 	mlx_destroy_window(cub->mlx, cub->win);
 	free_cub(cub);
 	mlx_destroy_display(cub->mlx);

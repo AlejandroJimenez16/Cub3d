@@ -84,6 +84,7 @@ static void	run_game(t_cub *cub)
 	load_texture(cub, WE, cub->we_path);
 	ft_printf("Map and config loaded successfully! Starting game...\n");
 	mlx_mouse_move(cub->mlx, cub->win, WIDTH / 2, HEIGHT / 2);
+	mlx_mouse_hide(cub->mlx, cub->win);
 	mlx_hook(cub->win, 2, 1L << 0, handle_key_press, cub);
 	mlx_hook(cub->win, 3, 1L << 1, handle_key_release, cub);
 	mlx_hook(cub->win, 6, 1L << 6, mouse_hook, cub);
